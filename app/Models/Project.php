@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Type;
 
 class Project extends Model
 {
@@ -13,7 +14,7 @@ class Project extends Model
 
     use HasFactory;
 
-    protected $fillable = ['title','image','url','slug'];
+    protected $fillable = ['title','image','url','slug','type_id'];
 
     //Ho bisogno che lo slug sia unico per ogni progetto, quindi ciclo, conto e in base al count definisco slug
     public static function generateSlug($title)
@@ -25,5 +26,10 @@ class Project extends Model
             $count++;
         }
         return $slug;
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
     }
 }
