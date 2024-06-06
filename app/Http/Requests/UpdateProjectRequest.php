@@ -34,7 +34,8 @@ class UpdateProjectRequest extends FormRequest
             ],
             */
             'image' => 'nullable',
-            'url' => 'required'
+            'url' => 'required',
+            'type_id' => 'nullable|exists:types,id'
         ];
     }
 
