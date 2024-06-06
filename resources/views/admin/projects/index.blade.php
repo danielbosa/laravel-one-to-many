@@ -16,21 +16,37 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
-                <th scope="col" class="d-none d-md-block">Slug</th>
-                <th scope="col" class="">Created At</th>
-                <th scope="col" class="">Update At</th>
+                <th scope="col" class="d-none d-md-table-cell">Slug</th>
+                <th scope="col">Type</th>
+                <th scope="col">Image</th>
+                {{-- <th scope="col" class="d-none d-md-table-cell">Created At</th> --}}
+                <th scope="col" class="d-none d-md-table-cell">Update At</th>
                 <th scope="col">Action</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             @foreach ($projects as $project)
             <tr>
                 <td>{{$project->id}}</td>
                 <td>{{$project->title}}</td>
-                <td class="col-slug d-none d-md-block">{{$project->slug}}</td>
-                <td class="">{{$project->created_at}}</td>
-                <td class="">{{$project->updated_at}}</td>
+                <td class="d-none d-md-table-cell">{{$project->slug}}</td>
                 <td>
+                    @if($project->type)
+                    {{$project->type->name}}
+                    @else
+                    No type
+                    @endif
+                </td>
+                <td>
+                    @if($project->image)
+                    <span class="text-success"><i class="fa-solid fa-circle"></i></span>
+                    @else
+                    <span class="text-danger"><i class="fa-solid fa-circle"></i></span>
+                    @endif
+                </td>
+                {{-- <td class="d-none d-md-table-cell">{{$project->created_at}}</td> --}}
+                <td class="d-none d-md-table-cell">{{$project->updated_at}}</td>
+                <td class="">
                     <a href="{{route('admin.projects.show', $project->slug)}}" title="Show" class="text-black px-2"><i class="fa-solid fa-eye"></i></a>
                     <a href="{{route('admin.projects.edit', $project->slug)}}" title="Edit" class="text-black px-2"><i class="fa-solid fa-pen"></i></a>
                     <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline-block">
@@ -52,8 +68,8 @@
             @endforeach
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 {{ $projects->links('vendor.pagination.bootstrap-5') }}
 @include('partials.modal-delete')
