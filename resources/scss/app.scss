@@ -75,7 +75,7 @@ $fa-font-path: "../fonts/webfonts" !default;
             }      
         }
     #wrapper{
-        //flex-grow: 1;
+        flex-grow: 1;
         height: 100vh;
         overflow-y: hidden;
         //margin left per non finire sotto la sidebar fixed
