@@ -16,7 +16,8 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col" class="d-none d-md-block">Slug</th>
+                {{-- <th scope="col" class="d-none d-md-block">Slug</th> --}}
+                <th scope="col">Icon</th>
                 <th scope="col" class="">Created At</th>
                 <th scope="col" class="">Update At</th>
                 <th scope="col">Action</th>
@@ -27,7 +28,15 @@
             <tr>
                 <td>{{$type->id}}</td>
                 <td>{{$type->name}}</td>
-                <td class="col-slug d-none d-md-block">{{$type->slug}}</td>
+                {{-- <td class="col-slug d-none d-md-table-cell">{{$type->slug}}</td> --}}
+                <td class="">
+                    @if($type->icon)
+                    <img class="shadow" width="50" src="{{asset('storage/' . $type->icon)}}" alt="{{$type->name}}" id="">
+                    @else
+                    <img class="shadow" width="50" src="/images/logoDB.png" alt="{{$type->name}}" id="">
+                    @endif
+                    {{$type->icon}}
+                </td>
                 <td class="">{{$type->created_at}}</td>
                 <td class="">{{$type->updated_at}}</td>
                 <td>
@@ -55,6 +64,5 @@
             </tbody>
         </table>
 </section>
-{{ $types->links('vendor.pagination.bootstrap-5') }}
 @include('partials.modal-delete')
 @endsection

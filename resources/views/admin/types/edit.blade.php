@@ -13,7 +13,7 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="name" class="form-label">name</label>
+                <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                     value="{{ old('name', $type->name) }}" minlength="3" maxlength="200" required>
                 @error('name')
@@ -29,13 +29,13 @@
                 @if($type->icon)
                 <img class="shadow" width="150" src="{{asset('storage/' . $type->icon)}}" alt="{{$type->title}}" id="uploadPreview">
                 @else
-                <img class="shadow" width="150" src="/images/logoDB.png" alt="{{$type->title}}" id="uploadPreview">
+                <img class="shadow" width="150" src="/images/placeholder.png" alt="{{$type->title}}" id="uploadPreview">
                 @endif
             </div>
 
             <div class="mb-3">
                 <label for="icon" class="form-label">Icon</label>
-                <input type="file" accept="image/*" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" value="{{ old('icon', $type->icon) }}" maxlength="255">
+                <input type="file" accept="image/*" class="form-control @error('icon') is-invalid @enderror" id="image" name="icon" value="{{ old('icon', $type->icon) }}" maxlength="255">
                 @error('icon')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

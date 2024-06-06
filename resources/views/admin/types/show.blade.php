@@ -15,7 +15,13 @@
                 </button>
             </form>
         </div>
-
+    </div>
+    <div class="py-4">
+        @if($type->icon)
+        <img src="{{asset('storage/' . $type->icon)}}" class="shadow" width="150" alt="{{$type->title}}">
+        @else
+        <img src="/images/placeholder.png" alt="{{$type->title}}">
+        @endif
     </div>
 </section>
 @include('partials.modal-delete')
